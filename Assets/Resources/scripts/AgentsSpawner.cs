@@ -23,12 +23,26 @@ public class AgentsSpawner : MonoBehaviour
 
 	public List<GameObject> AgentsList;
 
+	private Renderer rend;
+
 	void Awake ()
 	{
 		// go through all children of spawn parent and add them to a list 
 		SpwanLocations = spawnParent.GetComponentsInChildren<Transform> ().Skip (1).ToList ();
 		TargetLocations = targetParent.GetComponentsInChildren<Transform> ().Skip (1).ToList ();
 
+		// hide the spawn/target objects on start 
+		for (int i = 0; i < SpwanLocations.Count; i++) {
+			rend = SpwanLocations [i].GetComponent<Renderer> ();
+			rend.enabled = false;	
+		}
+
+		for (int i = 0; i < TargetLocations.Count; i++) {
+			rend = TargetLocations [i].GetComponent<Renderer> ();
+			rend.enabled = false;	
+		}
+
+		//first deplyment at start
 		for (int i = 0; i < startAgents; i++) {
 			spwanerMethod ();
 		}
@@ -39,19 +53,11 @@ public class AgentsSpawner : MonoBehaviour
 
 		while (true) {
 
-			if (AgentsList.Count < startAgents * 2) {
-				yield return new WaitForSeconds (delaySpwan);
-				Debug.Log ("spwaning");
-				spwanerMethod (); //call creation method
+			yield return new WaitForSeconds (delaySpwan);
+			//Debug.Log ("spwaning");
 
-			} else {
-				yield return new WaitForSeconds (delaySpwan * 5);
-				Debug.Log ("too many agents");
+			spwanerMethod (); //call creation method
 
-				spwanerMethod (); //call creation method
-
-			}
-				
 		}
 	}
 
