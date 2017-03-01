@@ -8,7 +8,7 @@ public class AgentsController : MonoBehaviour
 {
 
 	private GameObject spwanerParent;
-	private new List <GameObject> otherList;
+	private List <GameObject> otherList;
 	private NavMeshAgent thisAgentNavMesh;
 	private TrailRenderer tr;
 	public float timeAtAmenity;

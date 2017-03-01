@@ -8,7 +8,7 @@ public class AffineUVFix : MonoBehaviour {
 	public bool onoffkeystone = false;
     public int selectedCorner = 0;
 
-    private bool keystonevisible;
+    //private bool keystonevisible;
 
     private GameObject[] corners;
 
@@ -26,7 +26,7 @@ public class AffineUVFix : MonoBehaviour {
             obj.GetComponent<Renderer>().material.color = i == selectedCorner ? Color.green : Color.red;
             corners[i] = obj;
         }
-        keystonevisible = true;
+        //keystonevisible = true;
     }
 
     void Update () {
@@ -50,15 +50,11 @@ public class AffineUVFix : MonoBehaviour {
 	    widths_heights[2].y = widths_heights[3].y = shiftedPositions[2].y;
 	    mesh.uv2 = widths_heights;
 
-		//if (onoffkeystone != keystonevisible){
-			//onoffkeystone = !onoffkeystone;	
 		onOffObjects(onoffkeystone);// toggles onoff at each click
         if(onoffkeystone)
         {
             OnSceneControl();
-           // Debug.Log("Yes!!");
         }
-		//} 
 
 	}
 
@@ -103,14 +99,12 @@ public class AffineUVFix : MonoBehaviour {
 			
 		for (int i=0; i < vertices.Length; i++)
 		{
-			//print ("point position: " + transform.TransformPoint(vertices[i]));
 			GameObject sphere = corners[i];
 			sphere.transform.position = transform.TransformPoint(vertices[i]);
             sphere.SetActive(visible);
-            //sphere.GetComponent<MeshRenderer> ().material.color = Color.red;
-			//Destroy (sphere, 0.1f);
+          
 
 		}
-        keystonevisible = visible;
+        //keystonevisible = visible;
 	}
 }
