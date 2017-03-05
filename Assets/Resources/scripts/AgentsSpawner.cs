@@ -52,17 +52,20 @@ public class AgentsSpawner : MonoBehaviour
 	{
 
 		while (true) {
-
 			yield return new WaitForSeconds (delaySpwan);
-			//Debug.Log ("spwaning");
-
 			spwanerMethod (); //call creation method
 
+//			GameObject[] tmp = GameObject.FindGameObjectsWithTag ("amenity");
+//			for (int i = 0; i < tmp.Length; i++) {
+//				SpwanLocations.Add (tmp [i].GetComponent<Transform> ());
+//			}
 		}
+
 	}
 
 	void spwanerMethod ()
 	{
+
 		// creating the agent //
 		Transform randomSpwanLocation = SpwanLocations [Random.Range (0, SpwanLocations.Count)];
 		agent = GameObject.Instantiate 
@@ -94,6 +97,7 @@ public class AgentsSpawner : MonoBehaviour
 			agentNavMesh.GetComponent<Renderer> ().material.color = Color.green;
 			agent.tag = "Poor";
 
+		
 		}
 	}
 }
