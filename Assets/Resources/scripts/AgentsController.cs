@@ -12,6 +12,8 @@ public class AgentsController : MonoBehaviour
 	private NavMeshAgent thisAgentNavMesh;
 	private TrailRenderer trail;
 	public float timeAtAmenity;
+	private int oldHitID = 0;
+
 
 
 	private Color thisColor;
@@ -35,6 +37,7 @@ public class AgentsController : MonoBehaviour
 			new GradientAlphaKey[] { new GradientAlphaKey (alpha, 0f), new GradientAlphaKey (alpha / 100, 1f) }
 		);
 		trail.colorGradient = gradient;
+
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -49,11 +52,38 @@ public class AgentsController : MonoBehaviour
 	IEnumerator killAfterTime ()
 	{
 		thisAgentNavMesh.Stop ();
+		rayToHeatmap(); 
+
 		yield return new WaitForSeconds (timeAtAmenity);
 		Destroy (gameObject);
 		agentsListInSpawner.Remove (gameObject);
 	}
 
+
+	void rayToHeatmap ()
+	{ 
+		RaycastHit hit;
+		if (Physics.Raycast (transform.position, Vector3.up, out hit, 2000)) {
+			if (hit.transform.GetInstanceID () != oldHitID) {
+				print (gameObject.GetInstanceID ().ToString () + " just hit " + hit.collider.name.ToString () + ": " + hit.transform.GetInstanceID ().ToString ());
+				oldHitID = hit.transform.GetInstanceID (); //new data has arrived from server 
 	
+			}
+		}
+	}
 
 }
+
+
+
+//	void Update ()
+//	{ 
+//		RaycastHit hit;
+//		if (Physics.Raycast (transform.position, Vector3.up, out hit, 1000)) {
+//			if (hit.transform.GetInstanceID() != oldHitID) {
+//				print (gameObject.GetInstanceID().ToString() + " just hit " + hit.collider.name.ToString () + ": " + hit.transform.GetInstanceID ().ToString ());
+//				oldHitID = hit.transform.GetInstanceID(); //new data has arrived from server 
+//
+//			}
+//		}
+//	}

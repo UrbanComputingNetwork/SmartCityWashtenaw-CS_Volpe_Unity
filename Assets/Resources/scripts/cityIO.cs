@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-/// <summary>
-/// class start
-/// </summary>
-
+/// <summary> class start </summary>
 
 [System.Serializable]  // have to have this in every JSON class!
 public class Grid
@@ -49,11 +46,7 @@ public class Table
 	}
 }
 
-
-/// <summary>
-/// class end
-/// </summary>
-
+/// <summary> class end </summary>
 
 
 public class cityIO : MonoBehaviour
@@ -74,12 +67,12 @@ public class cityIO : MonoBehaviour
 	public int tableY;
 	public int cellWorldSize;
 	public float cellShrink;
-	public int floorHeight;
+	public float floorHeight;
 
 	private GameObject cube;
 	public GameObject textMeshPrefab;
 
-	private Table Cells;
+	public Table Cells;
 	public GameObject gridParent;
 	public static List<GameObject> gridObjects = new List<GameObject> ();
 	//new list!
