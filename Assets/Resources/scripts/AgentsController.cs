@@ -12,18 +12,14 @@ public class AgentsController : MonoBehaviour
 	private NavMeshAgent thisAgentNavMesh;
 	private TrailRenderer trail;
 	public float timeAtAmenity;
-	private int oldHitID = 0;
-
-
-
 	private Color thisColor;
 
 
 	void Start ()
 	{
 
-		spwanerParent = GameObject.Find ("Spawners");
-		agentsListInSpawner = spwanerParent.GetComponent<AgentsSpawner> ().AgentsList; 
+		spwanerParent = GameObject.Find ("Spawners"); 
+		agentsListInSpawner = spwanerParent.GetComponent<AgentsSpawner> ().AgentsList; // get the agents list from thier spawning parent 
 
 		thisColor = gameObject.GetComponent<Renderer> ().material.color;
 		trail = GetComponent<TrailRenderer> ();
@@ -43,47 +39,19 @@ public class AgentsController : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		thisAgentNavMesh = this.GetComponent<NavMeshAgent> ();
-
 		if (other.gameObject.tag == "amenity") {
 			StartCoroutine (killAfterTime ());
 		}
 	}
 
-	IEnumerator killAfterTime ()
+	IEnumerator killAfterTime () // killed after x time at target with Tag y 
 	{
+		thisAgentNavMesh.tag = "StoppedAgent"; 
 		thisAgentNavMesh.Stop ();
-		rayToHeatmap(); 
-
 		yield return new WaitForSeconds (timeAtAmenity);
 		Destroy (gameObject);
 		agentsListInSpawner.Remove (gameObject);
 	}
 
-
-	void rayToHeatmap ()
-	{ 
-		RaycastHit hit;
-		if (Physics.Raycast (transform.position, Vector3.up, out hit, 2000)) {
-			if (hit.transform.GetInstanceID () != oldHitID) {
-				print (gameObject.GetInstanceID ().ToString () + " just hit " + hit.collider.name.ToString () + ": " + hit.transform.GetInstanceID ().ToString ());
-				oldHitID = hit.transform.GetInstanceID (); //new data has arrived from server 
-	
-			}
-		}
-	}
-
 }
 
-
-
-//	void Update ()
-//	{ 
-//		RaycastHit hit;
-//		if (Physics.Raycast (transform.position, Vector3.up, out hit, 1000)) {
-//			if (hit.transform.GetInstanceID() != oldHitID) {
-//				print (gameObject.GetInstanceID().ToString() + " just hit " + hit.collider.name.ToString () + ": " + hit.transform.GetInstanceID ().ToString ());
-//				oldHitID = hit.transform.GetInstanceID(); //new data has arrived from server 
-//
-//			}
-//		}
-//	}

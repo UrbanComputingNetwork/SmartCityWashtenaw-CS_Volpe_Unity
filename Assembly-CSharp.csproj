@@ -49,7 +49,6 @@
      <Compile Include="Assets\Resources\scripts\AgentsController.cs" />
      <Compile Include="Assets\Resources\scripts\AgentsSpawner.cs" />
      <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
-     <Compile Include="Assets\Resources\scripts\Targets.cs" />
      <Compile Include="Assets\Resources\scripts\WIP\gridBuilder.cs" />
      <Compile Include="Assets\Resources\scripts\cityIO.cs" />
      <Compile Include="Assets\Resources\scripts\heatMap.cs" />

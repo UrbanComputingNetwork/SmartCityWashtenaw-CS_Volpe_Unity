@@ -52,6 +52,7 @@ public class Table
 public class cityIO : MonoBehaviour
 {
 
+	private string localJson = "file:///Users/noyman/GIT/KendallAgents/Assets/Resources/scripts/citymatrix_volpe.json";
 	private string urlStart = "http://45.55.73.103/table/citymatrix_";
 	public string urlTable = "volpe";
 
@@ -88,7 +89,9 @@ public class cityIO : MonoBehaviour
 		while (true) {
 			
 			url = urlStart + urlTable;
-			WWW www = new WWW (url);
+			//WWW www = new WWW (url);
+			WWW www = new WWW (localJson);
+
 			yield return www;
 			yield return new WaitForSeconds (delayWWW);
 			cityIOtext = www.text; //just a cleaner Var
@@ -139,7 +142,7 @@ public class cityIO : MonoBehaviour
 						cube.GetComponent<NavMeshObstacle> ().carving = true; 
 						cube.GetComponent<Renderer> ().material.color = colors[Cells.grid [i].type];
 
-						cube.tag = "amenity"; // to become attractor 
+						//cube.tag = "amenity"; // to become attractor 
 
 				
 					} else { //if road, green or other non building 
