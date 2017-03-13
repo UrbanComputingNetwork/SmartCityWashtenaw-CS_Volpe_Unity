@@ -90,7 +90,7 @@ public class cityIO : MonoBehaviour
 			
 			url = urlStart + urlTable;
 			//WWW www = new WWW (url);
-			WWW www = new WWW (localJson);
+			WWW www = new WWW (url);
 
 			yield return www;
 			yield return new WaitForSeconds (delayWWW);
