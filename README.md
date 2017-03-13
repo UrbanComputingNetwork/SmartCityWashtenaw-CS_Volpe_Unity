@@ -1,10 +1,9 @@
-# CSharpScope Volpe 
-
+# CSharpScope_Toolbox
 [unity, c#, js, json]
 
-CsharpScope is a tool to parse JSON data from cityIO server and visualize it in 3d grid form. 
-Server readings are done udsing WWW get method on set intervals. 
-Tests could be done locally using attached JSON demo files. 
+Agent Based Visualization of Proximity-based Amenities Usage in Kendall Sq. Cambridge.
+This sim uses CsharpScope, a JSON parser and visualizer for cityIO.  
 
 
-![](https://github.com/RELNO/CSharpScope_Volpe/raw/master/gif.gif)
+![](https://github.com/RELNO/KendallAgents/raw/master/ABVgif.gif)
+
