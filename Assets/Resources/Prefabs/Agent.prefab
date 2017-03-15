@@ -225,7 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d05e856d95540fb8f5203ba1e629bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeAtAmenity: 15
+  _timeAtAmenity: 30
+  _dieAfter: 100
 --- !u!195 &195000011243235222
 NavMeshAgent:
   m_ObjectHideFlags: 1

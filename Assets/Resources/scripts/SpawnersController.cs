@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-public class AgentsSpawner : MonoBehaviour
+public class SpawnersController : MonoBehaviour
 {
 
 	//Vars here
@@ -18,8 +18,8 @@ public class AgentsSpawner : MonoBehaviour
 
 	public GameObject spawnParent;
 	public GameObject targetParent;
-	private List <Transform> SpwanLocations;
-	private List <Transform> TargetLocations;
+	public  List <Transform> SpwanLocations;
+	public  List <Transform> TargetLocations;
 
 	public List<GameObject> AgentsList;
 
@@ -54,11 +54,6 @@ public class AgentsSpawner : MonoBehaviour
 		while (true) {
 			yield return new WaitForSeconds (delaySpwan);
 			spwanerMethod (); //call creation method
-
-//			GameObject[] tmp = GameObject.FindGameObjectsWithTag ("amenity");
-//			for (int i = 0; i < tmp.Length; i++) {
-//				SpwanLocations.Add (tmp [i].GetComponent<Transform> ());
-//			}
 		}
 
 	}

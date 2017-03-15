@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CAD15794-3F24-4EBD-A333-A0ECD76A1C1C}</ProjectGuid>
+    <ProjectGuid>{F3292FEE-E269-E30B-ED6A-572116275281}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -47,15 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Resources\scripts\AgentsController.cs" />
-     <Compile Include="Assets\Resources\scripts\AgentsSpawner.cs" />
+     <Compile Include="Assets\Resources\scripts\HeatMap.cs" />
      <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
-     <Compile Include="Assets\Resources\scripts\WIP\gridBuilder.cs" />
+     <Compile Include="Assets\Resources\scripts\SpawnersController.cs" />
+     <Compile Include="Assets\Resources\scripts\TargetController.cs" />
      <Compile Include="Assets\Resources\scripts\cityIO.cs" />
-     <Compile Include="Assets\Resources\scripts\heatMap.cs" />
      <None Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\Affine UV fix.shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -70,9 +67,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
