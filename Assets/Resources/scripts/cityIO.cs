@@ -71,6 +71,7 @@ public class cityIO : MonoBehaviour
 	public float floorHeight;
 
 	private GameObject cube;
+	public Material _material; 
 
 	public Table Cells;
 	public GameObject gridParent;
@@ -126,6 +127,7 @@ public class cityIO : MonoBehaviour
 		for (int i = 0; i < Cells.grid.Count; i++) {
 
 			cube = GameObject.CreatePrimitive (PrimitiveType.Cube); //make cell cube  
+			cube.GetComponent<Renderer> ().material = _material; 
 			cube.transform.parent = gridParent.transform; //put into parent object for later control 
 			cube.transform.position = new Vector3 ((Cells.grid [i].x * cellWorldSize), 0, (Cells.grid [i].y * cellWorldSize)); //compensate for scale shift due to height
 
@@ -145,8 +147,10 @@ public class cityIO : MonoBehaviour
 						cube.transform.position = new Vector3 (cube.transform.position.x, (Cells.objects.density [n] * floorHeight) / 2, cube.transform.position.z); //compensate for scale shift and x,y array
 						cube.AddComponent<NavMeshObstacle> ();
 						cube.GetComponent<NavMeshObstacle> ().carving = true; 
+	
+
 						var _tmpColor = colors [Cells.grid [i].type];
-						_tmpColor.a = 0.75f; 
+						_tmpColor.a = 0.5f; 
 						cube.GetComponent<Renderer> ().material.color = _tmpColor;
 
 

@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Rendering;
+
 
 
 
@@ -9,14 +11,16 @@ public class HeatMap : MonoBehaviour
 {
 
 	public int _subDevisions;
-	public float _pixelSize;
+	private float _pixelSize;
 	private GameObject _quad;
+	public Material _baseMaterial;
+	public int _startHeight;
 
 	public GameObject _heatMapParent;
 	public GameObject _targetsParent;
 
-	public  List<GameObject> heatMapPixels = new List<GameObject> ();
-	private List <GameObject> _targetsList;
+	public  List<GameObject> _heatMapPixels = new List<GameObject> ();
+	private Collider[] _radiusColliders;
 
 
 	RaycastHit _hitInfo;
@@ -27,10 +31,11 @@ public class HeatMap : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		_pixelSize = 1000 / _subDevisions; 
 		for (int x = 0; x < _subDevisions; x++) {
 			for (int y = 0; y < _subDevisions; y++) {
 
-				_quad = GameObject.CreatePrimitive (PrimitiveType.Quad); //make cell cube  
+				_quad = GameObject.CreatePrimitive (PrimitiveType.Quad); //make cell cube 
 
 				Destroy (_quad.GetComponent <MeshCollider> ());
 				var _locX = _heatMapParent.transform.position.x; 
@@ -38,13 +43,15 @@ public class HeatMap : MonoBehaviour
 
 				_quad.transform.localScale = new Vector3 (_pixelSize, _pixelSize, _pixelSize);
 				_quad.transform.parent = _heatMapParent.transform; //put into parent object for later control 
-				_quad.transform.position = new Vector3 ((x * _pixelSize) + _locX, 1000, (y * _pixelSize) + _locY); //compensate for scale shift due to height
+				_quad.transform.position = new Vector3 ((x * _pixelSize) + _locX, _startHeight, (y * _pixelSize) + _locY); //compensate for scale shift due to height
 				_quad.transform.Rotate (90, 90, 0); 
-				_quad.GetComponent<Renderer> ().material.color = Color.white;
 				_quad.AddComponent <BoxCollider> ();
 				_quad.GetComponent<BoxCollider> ().isTrigger = true; 
+				_quad.GetComponent<Renderer> ().material = _baseMaterial;
+				_quad.GetComponent<Renderer> ().material.color = new Color (0, 0, 0, 0);
+				_quad.transform.GetComponent<Renderer> ().shadowCastingMode = ShadowCastingMode.Off;
 
-				heatMapPixels.Add (_quad);
+				_heatMapPixels.Add (_quad);
 			}
 		}
 		
@@ -55,21 +62,33 @@ public class HeatMap : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
 		foreach (var i in TargetsList) {
-			TargetController tmp = i.gameObject.GetComponent<TargetController> ();
-
 			if (Physics.Raycast (i.transform.position, Vector3.up, out _hitInfo, Mathf.Infinity)) {
-				Collider[] _hitColliders = Physics.OverlapSphere (_hitInfo.collider.transform.position, 5*(tmp._medium + tmp._poor + tmp._rich));
+				TargetController _targetsVars = i.gameObject.GetComponent<TargetController> (); //get vars of rich, poor, med from other script 
+				var _agentsAtTarget = (_targetsVars._medium + _targetsVars._poor + _targetsVars._rich);
 
-				for (int x = 0; x < _hitColliders.Count(); x++) {
-					_hitColliders [x].GetComponent<Renderer> ().material.color = new Color (0, 1/(tmp._poor+.1f) , 0, 0.5f);
-					_hitColliders [x].GetComponent<Renderer> ().material.color = new Color (1/(tmp._medium+.1f) ,0 ,0, 0.5f);
-					_hitColliders [x].GetComponent<Renderer> ().material.color = new Color (0 ,0 , 1/(tmp._medium+.1f), 0.5f);
+				print (_targetsVars._medium + " " + _targetsVars._poor + " " +  _targetsVars._rich);
 
+				_radiusColliders = Physics.OverlapSphere (_hitInfo.collider.transform.position, (_subDevisions / 10) * _agentsAtTarget); //radius of affection  
+
+				for (int x = 0; x < _radiusColliders.Count (); x++) {
+					float dist = Vector3.Distance (_hitInfo.collider.transform.position, _radiusColliders [x].transform.position);
+
+					if (_radiusColliders [x].GetComponent<Renderer> ().material.color.a == 0) {
+						_radiusColliders [x].GetComponent<Renderer> ().material.color = 
+							new Color (dist / 100, 100 / (dist + 0.001f), 0, 0.75f);
+						
+						if (dist > 0) {
+							
+							_radiusColliders [x].transform.position = new Vector3 (_radiusColliders [x].transform.position.x,
+								(_radiusColliders [x].transform.position.y - Mathf.Sqrt (dist)), 
+								_radiusColliders [x].transform.position.z); 
+							
+						}
+					}
 				}
-			} 
+			}
 		}
-			
 	}
 }
+
