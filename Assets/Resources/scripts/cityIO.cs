@@ -18,7 +18,7 @@ public class Grid
 [System.Serializable] // have to have this in every JSON class!
 public class Objects
 {
-	public int slider1;
+	public float slider1;
 	public int toggle1;
 	public int toggle2;
 	public int toggle3;
@@ -33,7 +33,7 @@ public class Objects
 }
 
 [System.Serializable]// have to have this in every JSON class!
-public class Table
+public  class Table
 {
 	public List<Grid> grid;
 	public Objects objects;
@@ -63,6 +63,7 @@ public class cityIO : MonoBehaviour
 	private string cityIOtext;
 	private string cityIOtext_Old;
 	//this one look for changes
+	public bool _flag = false; 
 
 	public int tableX;
 	public int tableY;
@@ -70,10 +71,10 @@ public class cityIO : MonoBehaviour
 	public float cellShrink;
 	public float floorHeight;
 
-	private GameObject cube;
-	public Material _material; 
+	private GameObject _cube;
+	public Material _material;
 
-	public Table Cells;
+	public Table _Cells;
 	public GameObject gridParent;
 	public GameObject textMeshPrefab;
 	public static List<GameObject> gridObjects = new List<GameObject> ();
@@ -106,13 +107,16 @@ public class cityIO : MonoBehaviour
 
 	void jsonHandler ()
 	{
-		Cells = Table.CreateFromJSON (cityIOtext); // get parsed JSON into Cells variable --- MUST BE BEFORE CALLING ANYTHING FROM CELLS!!
+		_Cells = Table.CreateFromJSON (cityIOtext); // get parsed JSON into Cells variable --- MUST BE BEFORE CALLING ANYTHING FROM CELLS!!
 		drawTable ();
+
 
 		// prints last update time to console 
 		System.DateTime epochStart = new System.DateTime (1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-		var lastUpdateTime = epochStart.AddSeconds (System.Math.Round (Cells.timestamp / 1000d)).ToLocalTime ();
+		var lastUpdateTime = epochStart.AddSeconds (System.Math.Round (_Cells.timestamp / 1000d)).ToLocalTime ();
 		print ("Table was updated." + '\n' + "Following JSON from CityIO server was created at: " + lastUpdateTime + '\n' + cityIOtext);
+
+		_flag = true; 
 	}
 
 
@@ -124,59 +128,59 @@ public class cityIO : MonoBehaviour
 			gridObjects.Clear (); // clean list!!!
 		}
 
-		for (int i = 0; i < Cells.grid.Count; i++) {
+		for (int i = 0; i < _Cells.grid.Count; i++) {
 
-			cube = GameObject.CreatePrimitive (PrimitiveType.Cube); //make cell cube  
-			cube.GetComponent<Renderer> ().material = _material; 
-			cube.transform.parent = gridParent.transform; //put into parent object for later control 
-			cube.transform.position = new Vector3 ((Cells.grid [i].x * cellWorldSize), 0, (Cells.grid [i].y * cellWorldSize)); //compensate for scale shift due to height
+			_cube = GameObject.CreatePrimitive (PrimitiveType.Cube); //make cell cube  
+			_cube.GetComponent<Renderer> ().material = _material; 
+			_cube.transform.parent = gridParent.transform; //put into parent object for later control 
+			_cube.transform.position = new Vector3 ((_Cells.grid [i].x * cellWorldSize), 0, (_Cells.grid [i].y * cellWorldSize)); //compensate for scale shift due to height
 
 			//meshTextType (i); /// call if you need type text float 
 
-			for (int n = -5; n < Cells.objects.density.Count + 1; n++) { //go through all 'densities' to match Type to Height. Add +1 so #6 (Road could be in. Fix in JSON Needed) 
-				if (Cells.grid [i].type == n) {
+			for (int n = -5; n < _Cells.objects.density.Count + 1; n++) { //go through all 'densities' to match Type to Height. Add +1 so #6 (Road could be in. Fix in JSON Needed) 
+				if (_Cells.grid [i].type == n) {
 
 					if (n == 6) { //Street -- Should be fixed in JSON formatting 
-						cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, 0, cellShrink * cellWorldSize);
+						_cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, 0, cellShrink * cellWorldSize);
 						var _tmpColor = Color.gray; 
 						_tmpColor.a = 0.75f; 
-						cube.GetComponent<Renderer> ().material.color = _tmpColor;
+						_cube.GetComponent<Renderer> ().material.color = _tmpColor;
 
-					} else if (Cells.grid [i].type > -1 && Cells.grid [i].type < 6) { //if this cell is one of the buildings types
-						cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, (Cells.objects.density [n] * floorHeight), cellShrink * cellWorldSize);
-						cube.transform.position = new Vector3 (cube.transform.position.x, (Cells.objects.density [n] * floorHeight) / 2, cube.transform.position.z); //compensate for scale shift and x,y array
-						cube.AddComponent<NavMeshObstacle> ();
-						cube.GetComponent<NavMeshObstacle> ().carving = true; 
+					} else if (_Cells.grid [i].type > -1 && _Cells.grid [i].type < 6) { //if this cell is one of the buildings types
+						_cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, (_Cells.objects.density [n] * floorHeight), cellShrink * cellWorldSize);
+						_cube.transform.position = new Vector3 (_cube.transform.position.x, (_Cells.objects.density [n] * floorHeight) / 2, _cube.transform.position.z); //compensate for scale shift and x,y array
+						_cube.AddComponent<NavMeshObstacle> ();
+						_cube.GetComponent<NavMeshObstacle> ().carving = true; 
 	
 
-						var _tmpColor = colors [Cells.grid [i].type];
+						var _tmpColor = colors [_Cells.grid [i].type];
 						_tmpColor.a = 0.5f; 
-						cube.GetComponent<Renderer> ().material.color = _tmpColor;
+						_cube.GetComponent<Renderer> ().material.color = _tmpColor;
 
 
 					} else { //if green or other non building 
-						cube.transform.position = new Vector3 (cube.transform.position.x, -5, cube.transform.position.z); //hide base plates 
-						cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, 0, cellShrink * cellWorldSize);
-						cube.AddComponent<NavMeshObstacle> ();
-						cube.GetComponent<NavMeshObstacle> ().carving = true; 
-						cube.GetComponent<Renderer> ().material.color = Color.green;
+						_cube.transform.position = new Vector3 (_cube.transform.position.x, -5, _cube.transform.position.z); //hide base plates 
+						_cube.transform.localScale = new Vector3 (cellShrink * cellWorldSize, 0, cellShrink * cellWorldSize);
+						_cube.AddComponent<NavMeshObstacle> ();
+						_cube.GetComponent<NavMeshObstacle> ().carving = true; 
+						_cube.GetComponent<Renderer> ().material.color = Color.green;
 					}
 
 				}
 			}
 
-			gridObjects.Add (cube); //add this Gobj to list
+			gridObjects.Add (_cube); //add this Gobj to list
 		}
 	}
 
 	private void meshTextType (int i) //mesh type text metod 
 	{
 
-		GameObject textMesh = GameObject.Instantiate (textMeshPrefab, new Vector3 ((Cells.grid [i].x * cellWorldSize), 
-			cube.transform.localScale.y + floorHeight, (Cells.grid [i].y * cellWorldSize)), 
-			cube.transform.rotation, transform) as GameObject; //spwan prefab text
+		GameObject textMesh = GameObject.Instantiate (textMeshPrefab, new Vector3 ((_Cells.grid [i].x * cellWorldSize), 
+			                      _cube.transform.localScale.y + floorHeight, (_Cells.grid [i].y * cellWorldSize)), 
+			                      _cube.transform.rotation, transform) as GameObject; //spwan prefab text
 
-		textMesh.GetComponent<TextMesh> ().text = Cells.grid [i].type.ToString ();
+		textMesh.GetComponent<TextMesh> ().text = _Cells.grid [i].type.ToString ();
 		textMesh.GetComponent<TextMesh> ().fontSize = 150;
 		textMesh.GetComponent<TextMesh> ().color = Color.black;
 		textMesh.GetComponent<TextMesh> ().characterSize = .5f; 	

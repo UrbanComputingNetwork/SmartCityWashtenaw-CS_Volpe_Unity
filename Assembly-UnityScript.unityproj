@@ -6,10 +6,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F3292FEE-E269-E30B-ED6A-572116275281}</ProjectGuid>
+    <ProjectGuid>{DD31838E-1527-3E28-C57D-B48AD6F3B099}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-UnityScript</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -46,13 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\scripts\AgentsController.cs" />
-     <Compile Include="Assets\Resources\scripts\HeatMap.cs" />
-     <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
-     <Compile Include="Assets\Resources\scripts\SpawnersController.cs" />
-     <Compile Include="Assets\Resources\scripts\TargetController.cs" />
-     <Compile Include="Assets\Resources\scripts\cameraControl.cs" />
-     <Compile Include="Assets\Resources\scripts\cityIO.cs" />
+     <Compile Include="Assets\test\LifeBar.js" />
      <None Include="Assets\Resources\Materials\HeightDependentShader.shader" />
      <None Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\Affine UV fix.shader" />
  <Reference Include="UnityEngine.UI">
