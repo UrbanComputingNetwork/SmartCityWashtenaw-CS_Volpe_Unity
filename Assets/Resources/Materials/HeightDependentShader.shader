@@ -6,8 +6,8 @@
 
 		_HeightMin("Height Min", Float) = -1
 		_HeightMax("Height Max", Float) = 1
-		_ColorMin("Tint Color At Min", Color) = (0,0,0,1)
-		_ColorMax("Tint Color At Max", Color) = (1,1,1,1)
+		_ColorMin("Tint Color At Min", Color) = (0,0,0,0.5)
+		_ColorMax("Tint Color At Max", Color) = (1,1,1,0.5)
 	}
 
 	SubShader
@@ -51,7 +51,8 @@
 			fixed4 tintColor = lerp(_ColorMax.rgba, _ColorMin.rgba, h);
 			o.Albedo = c.rgb * tintColor.rgb;
 		 	o.Alpha = tex2D (_MainTex, IN.uv_MainTex).a;
-			o.Alpha = tintColor.a;
+			//o.Alpha = tintColor.a;
+			o.Alpha = _ColorMax.a;
 		}
 
 

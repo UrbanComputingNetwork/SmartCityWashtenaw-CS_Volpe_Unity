@@ -12,6 +12,7 @@ TagManager:
   - Poor
   - amenity
   - StoppedAgent
+  - heatmap
   layers:
   - Default
   - TransparentFX
