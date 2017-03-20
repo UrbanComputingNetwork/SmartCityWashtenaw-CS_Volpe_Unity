@@ -10,8 +10,17 @@ using UnityEngine.Rendering;
 public class HeatMap : MonoBehaviour
 {
 
+	public GameObject _cityIoObj;
+	cityIO _script;
+	public GameObject _kendallHeatmap;
+	public GameObject _kendallDay;
+
+
 	public int _subDevisions;
 	public float _pixelSize;
+	[Range (0.0f, 1.0f)]
+	public float _shrinkingFactor;
+
 	private GameObject _mapPixelObj;
 	public Material _baseMaterial;
 	public GameObject _heatMapParent;
@@ -19,8 +28,6 @@ public class HeatMap : MonoBehaviour
 	public  List<GameObject> _heatMapPixels = new List<GameObject> ();
 	private Collider[] _radiusColliders;
 	private int _agentsAtTarget;
-	[Range (0.0f, 1.0f)]
-	public float _shrinkingFactor;
 
 
 	RaycastHit _hitInfo;
@@ -30,6 +37,8 @@ public class HeatMap : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		_script = _cityIoObj.transform.GetComponent<cityIO> ();
+
 		for (int x = 0; x < _subDevisions; x++) {
 			for (int y = 0; y < _subDevisions; y++) {
 
@@ -45,7 +54,7 @@ public class HeatMap : MonoBehaviour
 				//_quad.transform.Rotate (90, 90, 0); 
 				_mapPixelObj.AddComponent <BoxCollider> ();
 				_mapPixelObj.GetComponent<BoxCollider> ().isTrigger = true; 
-				_mapPixelObj.GetComponent <BoxCollider> ().size = new Vector3 (_pixelSize/8 , 1 , _pixelSize/8 );
+				_mapPixelObj.GetComponent <BoxCollider> ().size = new Vector3 (_pixelSize / 8, 1, _pixelSize / 8); //divide by 8 to get right area around pixel 
 
 				_mapPixelObj.GetComponent<Renderer> ().material = _baseMaterial;
 				_mapPixelObj.transform.GetComponent<Renderer> ().shadowCastingMode = ShadowCastingMode.Off;
@@ -53,40 +62,70 @@ public class HeatMap : MonoBehaviour
 				_heatMapPixels.Add (_mapPixelObj);
 			}
 		}
+
 		TargetsList = _targetsParent.GetComponentsInChildren<Transform> ().Skip (1).ToList (); //move to update for constant scan of list of points 
 
+		if (_script._Cells.objects.toggle4 != 2) {
+			foreach (Transform child in _heatMapParent.transform) {
+				child.gameObject.SetActive (false);
+				_kendallHeatmap.SetActive (false); 
+				_kendallDay.SetActive (true); 
+
+
+			}
+
+		}
 
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
+		if (_script._Cells.objects.toggle4 == 2) {
+			foreach (Transform _heatMapChildGO in _heatMapParent.transform) {
+				_heatMapChildGO.gameObject.SetActive (true);
+			}
+			_kendallHeatmap.SetActive (true); 
+			_kendallDay.SetActive (false); 
 
-		foreach (var i in TargetsList) {
-			if (Physics.Raycast (i.transform.position, Vector3.up, out _hitInfo, Mathf.Infinity)) {
+
+
+			foreach (var i in TargetsList) {
+				if (Physics.Raycast (i.transform.position, Vector3.up, out _hitInfo, Mathf.Infinity)) {
 				
-				if (_hitInfo.collider.tag == "heatmap") {
+					if (_hitInfo.collider.tag == "heatmap") {
 					
-					TargetController _targetsVars = i.gameObject.GetComponent<TargetController> (); //get vars of rich, poor, med from other script 
-					_agentsAtTarget = (_targetsVars._medium + _targetsVars._poor + _targetsVars._rich); //should show more specific response to types !!
+						TargetController _targetsVars = i.gameObject.GetComponent<TargetController> (); //get vars of rich, poor, med from other script 
 
-					_radiusColliders = Physics.OverlapSphere (_hitInfo.collider.transform.position, 20); //radius of affection 
-					for (int x = 0; x < _radiusColliders.Count (); x++) {
-						float _dist = Vector3.Distance (_hitInfo.collider.transform.position, _radiusColliders [x].transform.position);
-
-
-						if (_agentsAtTarget > 1) {
 							
+						_agentsAtTarget = (_targetsVars._medium + _targetsVars._poor + _targetsVars._rich); //should show more specific response to types !!
+
+						_radiusColliders = Physics.OverlapSphere (_hitInfo.collider.transform.position, 2 * _agentsAtTarget); //radius of affection 
+
+						for (int x = 0; x < _radiusColliders.Count (); x++) {
+							float _dist = Vector3.Distance (_hitInfo.collider.transform.position, _radiusColliders [x].transform.position);
+
 							_radiusColliders [x].transform.position = new Vector3 (
 								_radiusColliders [x].transform.position.x,
 								(_radiusColliders [x].transform.position.y + _agentsAtTarget * Mathf.Sqrt (_dist)),
-
 								_radiusColliders [x].transform.position.z);
 						}
 					}
-
 				}
 			}
+
+		} else {
+
+			foreach (Transform _heatMapChildGO in _heatMapParent.transform) {
+				_heatMapChildGO.gameObject.SetActive (false);
+
+			}
+			_kendallHeatmap.SetActive (false); 
+			_kendallDay.SetActive (true); 
+
 		}
+
+
 	}
 }
+

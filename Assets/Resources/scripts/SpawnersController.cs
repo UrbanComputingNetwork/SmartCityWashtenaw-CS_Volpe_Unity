@@ -21,8 +21,6 @@ public class SpawnersController : MonoBehaviour
 	public  List <Transform> SpwanLocations;
 	public  List <Transform> TargetLocations;
 
-	public List<GameObject> AgentsList;
-
 	private Renderer rend;
 
 	void Awake ()
@@ -66,7 +64,6 @@ public class SpawnersController : MonoBehaviour
 		agent = GameObject.Instantiate 
 			(agentPrefab, randomSpwanLocation.position, randomSpwanLocation.rotation, transform) as GameObject; //make the agent
 		UnityEngine.AI.NavMeshAgent agentNavMesh = agent.GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		AgentsList.Add (agent);
 
 		// Target alocation // 
 

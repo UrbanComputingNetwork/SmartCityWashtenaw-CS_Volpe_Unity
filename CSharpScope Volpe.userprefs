@@ -1,9 +1,9 @@
 ﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Materials/HeightDependentShader.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/scripts/HeatMap.cs">
     <Files>
-      <File FileName="Assets/Resources/scripts/HeatMap.cs" Line="73" Column="87" />
-      <File FileName="Assets/Resources/Materials/HeightDependentShader.shader" Line="55" Column="23" />
+      <File FileName="Assets/Resources/scripts/HeatMap.cs" Line="112" Column="8" />
+      <File FileName="Assets/Resources/scripts/cameraControl.cs" Line="35" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

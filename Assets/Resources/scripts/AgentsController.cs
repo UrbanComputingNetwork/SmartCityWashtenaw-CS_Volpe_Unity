@@ -8,7 +8,6 @@ public class AgentsController : MonoBehaviour
 {
 
 	private GameObject _spwanerParent;
-	private List <GameObject> _agentsListInSpawner;
 	private NavMeshAgent _thisAgentNavMesh;
 	private TrailRenderer _trail;
 	public float _timeAtAmenity;
@@ -19,9 +18,6 @@ public class AgentsController : MonoBehaviour
 
 	void Start ()
 	{
-
-		_spwanerParent = GameObject.Find ("Spawners"); 
-		_agentsListInSpawner = _spwanerParent.GetComponent<SpawnersController> ().AgentsList; // get the agents list from thier spawning parent 
 
 		_thisColor = gameObject.GetComponent<Renderer> ().material.color;
 		_trail = GetComponent<TrailRenderer> ();
@@ -55,7 +51,6 @@ public class AgentsController : MonoBehaviour
 		}
 		yield return new WaitForSeconds (_timeAtAmenity);
 		Destroy (gameObject);
-		_agentsListInSpawner.Remove (gameObject);
 
 	}
 
