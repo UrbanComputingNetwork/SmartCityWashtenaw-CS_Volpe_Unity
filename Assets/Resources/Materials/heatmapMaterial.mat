@@ -93,10 +93,10 @@ Material:
       second: 1
     - first:
         name: _HeightMax
-      second: 150
+      second: 400
     - first:
         name: _HeightMin
-      second: 100
+      second: 190
     - first:
         name: _Metallic
       second: 0

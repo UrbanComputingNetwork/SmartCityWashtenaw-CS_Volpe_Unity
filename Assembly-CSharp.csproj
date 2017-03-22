@@ -47,13 +47,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Resources\scripts\AgentsController.cs" />
-     <Compile Include="Assets\Resources\scripts\HeatMap.cs" />
+     <Compile Include="Assets\Resources\scripts\HeatMapMesh.cs" />
      <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
+     <Compile Include="Assets\Resources\scripts\OLD.cs" />
      <Compile Include="Assets\Resources\scripts\SpawnersController.cs" />
      <Compile Include="Assets\Resources\scripts\TargetController.cs" />
      <Compile Include="Assets\Resources\scripts\cameraControl.cs" />
      <Compile Include="Assets\Resources\scripts\cityIO.cs" />
      <None Include="Assets\Resources\Materials\HeightDependentShader.shader" />
+     <None Include="Assets\Resources\Materials\NewSurfaceShader.shader" />
      <None Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\Affine UV fix.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

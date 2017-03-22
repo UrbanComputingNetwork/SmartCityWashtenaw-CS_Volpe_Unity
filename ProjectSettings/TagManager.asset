@@ -13,6 +13,7 @@ TagManager:
   - amenity
   - StoppedAgent
   - heatmap
+  - TAG_HANDLE
   layers:
   - Default
   - TransparentFX
