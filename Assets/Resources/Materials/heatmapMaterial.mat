@@ -96,7 +96,7 @@ Material:
       second: 400
     - first:
         name: _HeightMin
-      second: 190
+      second: 200
     - first:
         name: _Metallic
       second: 0
@@ -130,10 +130,10 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _ColorMax
-      second: {r: 0, g: 0.697564, b: 0, a: 0.46808112}
+      second: {r: 1, g: 0, b: 1, a: 0.46808112}
     - first:
         name: _ColorMin
-      second: {r: 0.86987305, g: 0, b: 0, a: 0.57970357}
+      second: {r: 0, g: 0.6685655, b: 1, a: 0.36472604}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
