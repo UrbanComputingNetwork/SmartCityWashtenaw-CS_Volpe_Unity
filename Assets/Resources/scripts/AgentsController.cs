@@ -18,6 +18,7 @@ public class AgentsController : MonoBehaviour
 
 	void Start ()
 	{
+		Destroy (gameObject, _dieAfter); 
 
 		_thisColor = gameObject.GetComponent<Renderer> ().material.color;
 		_trail = GetComponent<TrailRenderer> ();
@@ -31,7 +32,6 @@ public class AgentsController : MonoBehaviour
 			new GradientAlphaKey[] { new GradientAlphaKey (alpha, 0f), new GradientAlphaKey (alpha / 100, 1f) }
 		);
 		_trail.colorGradient = gradient;
-		Destroy (gameObject, _dieAfter); 
 	}
 
 	void OnTriggerEnter (Collider other)

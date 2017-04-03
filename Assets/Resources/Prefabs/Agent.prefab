@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeAtAmenity: 30
-  _dieAfter: 60
+  _dieAfter: 50
 --- !u!195 &195000011243235222
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -246,4 +246,4 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
