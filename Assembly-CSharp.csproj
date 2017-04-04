@@ -46,20 +46,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\scripts\AgentsController.cs" />
-     <Compile Include="Assets\Resources\scripts\HeatMapMesh.cs" />
+     <Compile Include="Assets\Resources\Materials\Heatmap\HeatMapMesh.cs" />
+     <Compile Include="Assets\Resources\Materials\TargetPopulationGradientMaterial\TargetPopulationGradient.cs" />
+     <Compile Include="Assets\Resources\scripts\Agents\AgentsController.cs" />
+     <Compile Include="Assets\Resources\scripts\Agents\SpawnersController.cs" />
+     <Compile Include="Assets\Resources\scripts\Agents\TargetController.cs" />
+     <Compile Include="Assets\Resources\scripts\Agents\TargetsManager.cs" />
+     <Compile Include="Assets\Resources\scripts\CityIO\cityIO.cs" />
+     <Compile Include="Assets\Resources\scripts\Helpers\ResetScene.cs" />
+     <Compile Include="Assets\Resources\scripts\Helpers\cameraControl.cs" />
      <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
-     <Compile Include="Assets\Resources\scripts\OLD.cs" />
-     <Compile Include="Assets\Resources\scripts\SpawnersController.cs" />
-     <Compile Include="Assets\Resources\scripts\TargetController.cs" />
-     <Compile Include="Assets\Resources\scripts\cameraControl.cs" />
-     <Compile Include="Assets\Resources\scripts\cityIO.cs" />
-     <None Include="Assets\Resources\Materials\HeightDependentShader.shader" />
-     <None Include="Assets\Resources\Materials\NewSurfaceShader.shader" />
+     <None Include="Assets\Resources\Materials\TargetPopulationGradientMaterial\TargetPopulationGradient.shader" />
+     <None Include="Assets\Resources\Materials\Heatmap\HeightDependentShader.shader" />
      <None Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\Affine UV fix.shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -74,9 +73,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

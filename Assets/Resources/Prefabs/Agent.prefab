@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010607123672}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54000013454835194
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -222,10 +222,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010607123672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d05e856d95540fb8f5203ba1e629bd, type: 3}
+  m_Script: {fileID: 11500000, guid: a8be64fb195374b009563473414b028d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeAtAmenity: 30
+  _timeAtAmenity: 3
   _dieAfter: 50
 --- !u!195 &195000011243235222
 NavMeshAgent:
@@ -235,10 +235,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 1000010607123672}
   m_Enabled: 1
   m_Radius: 1
-  m_Speed: 40
+  m_Speed: 50
   m_Acceleration: 30
-  avoidancePriority: 1
-  m_AngularSpeed: 10
+  avoidancePriority: 0
+  m_AngularSpeed: 30
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
