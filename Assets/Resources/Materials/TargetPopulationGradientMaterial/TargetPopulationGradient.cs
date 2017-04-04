@@ -10,18 +10,18 @@ public class TargetPopulationGradient : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start ()
+	void OnEnable () //due to restart in stateManager -- start won't work! 
 	{
 
 		render = gameObject.GetComponent<Renderer> ();
-
+		NewUpdate (); 
 
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void NewUpdate ()
 	{
-		render.sharedMaterial.SetFloatArray ("_TargetValues", targetManager.GetComponent<TargetsManager>().GetTargetsValuesArray ());
-		render.sharedMaterial.SetVectorArray ("_TargetPositions", targetManager.GetComponent<TargetsManager> ().GetTargetsPositionsArray ());
+			render.sharedMaterial.SetFloatArray ("_TargetValues", targetManager.GetComponent<TargetsManager> ().GetTargetsValuesArray ());
+			render.sharedMaterial.SetVectorArray ("_TargetPositions", targetManager.GetComponent<TargetsManager> ().GetTargetsPositionsArray ());
 	}
 }

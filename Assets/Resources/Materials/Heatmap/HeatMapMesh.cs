@@ -21,14 +21,16 @@ public class HeatMapMesh: MonoBehaviour
 
 
 
-	void Start ()
+	void OnEnable ()
 	{
 		TargetsList = _targetsParent.GetComponentsInChildren<Transform> ().Skip (1).ToList (); //move to update for constant scan of list of points 
 		transform.GetComponent<Renderer> ().shadowCastingMode = ShadowCastingMode.Off;
 		tag = "heatmap"; 
+		NewUpdate (); 
+
 	}
 
-	void Update ()
+	void NewUpdate ()
 	{
 		Mesh _recieverMesh = _reciever.GetComponent<MeshFilter> ().mesh;
 		Mesh _heatmapMesh = GetComponent<MeshFilter> ().mesh;

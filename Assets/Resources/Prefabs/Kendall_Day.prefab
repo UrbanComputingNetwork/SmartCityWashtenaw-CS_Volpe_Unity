@@ -5721,7 +5721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1352792935231640
 GameObject:
   m_ObjectHideFlags: 1
@@ -11562,12 +11562,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4311913399354586}
   m_Layer: 0
-  m_Name: Kendall_Day
+  m_Name: Kendall_DAY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1722826723104450
 GameObject:
   m_ObjectHideFlags: 1

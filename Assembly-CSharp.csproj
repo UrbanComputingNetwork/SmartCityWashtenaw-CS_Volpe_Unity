@@ -55,6 +55,7 @@
      <Compile Include="Assets\Resources\scripts\CityIO\cityIO.cs" />
      <Compile Include="Assets\Resources\scripts\Helpers\ResetScene.cs" />
      <Compile Include="Assets\Resources\scripts\Helpers\cameraControl.cs" />
+     <Compile Include="Assets\Resources\scripts\Helpers\stateManager.cs" />
      <Compile Include="Assets\Resources\scripts\Keystone\Affine UV fix Shader\AffineUVFix.cs" />
      <None Include="Assets\Resources\Materials\TargetPopulationGradientMaterial\TargetPopulationGradient.shader" />
      <None Include="Assets\Resources\Materials\Heatmap\HeightDependentShader.shader" />

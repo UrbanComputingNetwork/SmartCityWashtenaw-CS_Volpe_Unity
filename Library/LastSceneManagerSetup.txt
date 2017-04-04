@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/KendallAgents.unity
+- path: Assets/CityScopeVolpe.unity
   isLoaded: 1
   isActive: 1
