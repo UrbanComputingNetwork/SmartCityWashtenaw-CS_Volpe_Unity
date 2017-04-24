@@ -2228,8 +2228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 1331521242}
-  _speed: 4
+  _endSize: 200
+  _add: 0
+  _rotSpeed: 5
+  _transitionDuration: 1
   _cityIOgameObj: {fileID: 1877268378}
+  _thisCam: {fileID: 1268008710}
 --- !u!1 &1270844272
 GameObject:
   m_ObjectHideFlags: 0

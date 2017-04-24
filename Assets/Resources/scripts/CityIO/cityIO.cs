@@ -53,7 +53,7 @@ public class cityIO : MonoBehaviour
 {
 
 	//	private string localJson = "file:///Users/noyman/GIT/KendallAgents/Assets/Resources/scripts/citymatrix_volpe.json"; //local file
-	private string urlStart = "http://45.55.73.103/table/citymatrix_";
+	private string urlStart = "https://cityio.media.mit.edu/table/citymatrix_";
 	public string urlTable = "volpe";
 
 	private string url;

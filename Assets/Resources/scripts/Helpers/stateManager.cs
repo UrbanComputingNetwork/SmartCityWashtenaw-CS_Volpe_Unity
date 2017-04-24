@@ -31,12 +31,12 @@ public class stateManager : MonoBehaviour
 				cleanOthers (transform);
 				showState (_day);
 
-			} else if (_script._Cells.objects.toggle1 == 1) {
+			} else if (_script._Cells.objects.toggle1 == 6) {
 				cleanOthers (transform);
 				showState (_night);
 
 
-			} else if (_script._Cells.objects.toggle1 >= 2) {
+			} else if (_script._Cells.objects.toggle1 >= 7) {
 				cleanOthers (transform);
 				showState (_heatmap);
 
@@ -44,7 +44,7 @@ public class stateManager : MonoBehaviour
 			} else {
 
 				cleanOthers (transform);
-				showState (_heatmap);
+				showState (_day);
 			}
 
 		}
