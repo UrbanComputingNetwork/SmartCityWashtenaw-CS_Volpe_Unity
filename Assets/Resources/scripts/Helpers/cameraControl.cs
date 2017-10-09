@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 public class cameraControl : MonoBehaviour
 {
@@ -16,22 +18,21 @@ public class cameraControl : MonoBehaviour
 	private float t = 0.0f;
 
 
-	cityIO _script;
+	CityScopeData _script;
 	public GameObject _cityIOgameObj;
 	public Camera _thisCam;
 
 
 	void Start ()
 	{
-		_script = _cityIOgameObj.transform.GetComponent<cityIO> ();
+		_script = _cityIOgameObj.transform.GetComponent<CityScopeData> ();
 		_startSize = _thisCam.orthographicSize; 
 	}
 
 	void Update ()
 	{
-		if (_script._flag == true) { // data IS flowing from cityIO 
 			
-			if (_script._Cells.objects.dockID + _add == -1) { // slider position 
+			if (Table.Instance.objects.dockID + _add == -1) { // slider position 
 				
 				if (_thisCam.orthographicSize != _startSize) { 
 					t -= Time.deltaTime * (Time.timeScale / _transitionDuration);
@@ -47,6 +48,5 @@ public class cameraControl : MonoBehaviour
 				_thisCam.orthographicSize = Mathf.Lerp (_startSize, _endSize, t);
 
 			}
-		}
 	}
 }

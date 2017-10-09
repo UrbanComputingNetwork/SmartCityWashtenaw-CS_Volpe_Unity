@@ -5,7 +5,7 @@ using UnityEngine;
 public class stateManager : MonoBehaviour
 {
 
-	cityIO _script;
+	CityScopeData _script;
 	public GameObject _cityIOgameObj;
 
 	public GameObject _heatmap;
@@ -20,34 +20,34 @@ public class stateManager : MonoBehaviour
 
 	void Start ()
 	{
-		_script = _cityIOgameObj.transform.GetComponent<cityIO> ();
+		_script = _cityIOgameObj.transform.GetComponent<CityScopeData> ();
 	}
 
 	void Update ()
 	{
-		if (_script._flag == true) { // data IS flowing from cityIO 
-			
-			if (_script._Cells.objects.toggle1 == 0) { 
-				cleanOthers (transform);
-				showState (_day);
-
-			} else if (_script._Cells.objects.toggle1 == 6) {
-				cleanOthers (transform);
-				showState (_night);
-
-
-			} else if (_script._Cells.objects.toggle1 >= 7) {
-				cleanOthers (transform);
-				showState (_heatmap);
-
-		
-			} else {
-
-				cleanOthers (transform);
-				showState (_day);
-			}
-
-		}
+//		if (_script._flag == true) { // data IS flowing from cityIO 
+//			
+//			if (_script._Cells.objects.toggle1 == 0) { 
+//				cleanOthers (transform);
+//				showState (_day);
+//
+//			} else if (_script._Cells.objects.toggle1 == 6) {
+//				cleanOthers (transform);
+//				showState (_night);
+//
+//
+//			} else if (_script._Cells.objects.toggle1 >= 7) {
+//				cleanOthers (transform);
+//				showState (_heatmap);
+//
+//		
+//			} else {
+//
+//				cleanOthers (transform);
+//				showState (_day);
+//			}
+//
+//		}
 	}
 
 	void cleanOthers (Transform t)
