@@ -3,9 +3,9 @@
 
 
 ______________________
-![](docs/a.gif)
+![](DOCS/a.gif)
 
-![](docs/b.gif)
+![](DOCS/b.gif)
 
 _______
 -- Note: Demo is active but dev. on this repo seized --  
